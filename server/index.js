@@ -87,7 +87,7 @@ function nextRound(state) {
 setInterval(() => {
   for (const [code, room] of Object.entries(rooms)) {
     const { state, players } = room;
-    if (state.winner || state.matchOver || players.length < 2) continue;
+    if (!state || state.winner || state.matchOver || players.length < 2) continue;
     const elapsed = (Date.now() - state.timerStart) / 1000;
     if (elapsed >= state.config.timerSeconds) {
       state.currentTurn = state.currentTurn === "X" ? "O" : "X";
